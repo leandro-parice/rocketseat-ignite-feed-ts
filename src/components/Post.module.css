@@ -1,0 +1,134 @@
+.post {
+	background-color: var(--gray-800);
+	padding: 2.5rem;
+	border-radius: 8px;
+	width: 100%;
+}
+
+.post + .post {
+	margin-top: 2rem;
+}
+
+.post header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 1.5rem;
+}
+
+.post header time {
+	color: var(--gray-400);
+	font-size: 0.875rem;
+}
+
+.post header .profile {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+.post header .profile img {
+	border-radius: 8px;
+	width: 3.75rem;
+	height: 3.75rem;
+	display: block;
+	object-fit: contain;
+	border: 2px solid var(--gray-800);
+	outline: 2px solid var(--green-500);
+}
+
+.post header .profile .name {
+	display: flex;
+	flex-direction: column;
+}
+
+.post header .profile strong {
+	font-weight: 700;
+	color: var(--gray-100);
+	line-height: 1.5rem;
+}
+
+.post header .profile span {
+	font-size: 0.85rem;
+	color: var(--gray-400);
+	line-height: 1.5rem;
+}
+
+.post > .content p {
+	color: var(--gray-300);
+	line-height: 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.post > .content a {
+	color: var(--green-500);
+	text-decoration: none;
+}
+
+.post > .content a:hover {
+	text-decoration: underline;
+}
+
+.post > footer {
+	border-top: 1px solid var(--gray-600);
+	padding-top: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+.post > footer form label {
+	font-weight: 700;
+	color: var(--gray-100);
+	margin-bottom: 1rem;
+	display: block;
+}
+
+.post > footer form textarea {
+	background-color: var(--gray-900);
+	border-radius: 8px;
+	border: none;
+	padding: 1rem;
+	color: var(--gray-300);
+	display: block;
+	width: 100%;
+	resize: none;
+	margin-bottom: 1rem;
+	min-height: 6rem;
+}
+
+.post > footer form textarea:focus {
+	outline: 1px solid var(--green-500);
+}
+
+.post > footer form textarea::placeholder {
+	color: var(--gray-400);
+}
+
+.post > footer form .footer {
+	/* visibility: hidden;
+	max-height: 0; */
+}
+
+.post > footer form:focus-within .footer {
+	/* visibility: visible;
+	max-height: none; */
+}
+
+.post > footer form .footer button {
+	background-color: var(--green-500);
+	border: none;
+	border-radius: 8px;
+	color: var(--white);
+	font-weight: 700;
+	transition: background-color 0.2s;
+	cursor: pointer;
+	padding: 1rem 1.5rem;
+}
+
+.post > footer form .footer button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.post > footer form .footer button:not(:disabled):hover {
+	background-color: var(--green-300);
+}

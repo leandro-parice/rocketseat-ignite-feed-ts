@@ -1,0 +1,20 @@
+.content {
+	width: 100%;
+	max-width: 90rem;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 2rem;
+}
+
+@media (max-width: 768px) {
+	/* html {
+		font-size: 87.5%;
+	} */
+
+	.content {
+		display: block;
+	}
+}

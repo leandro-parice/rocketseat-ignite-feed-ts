@@ -1,0 +1,112 @@
+.sidebarModal {
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 75%);
+	z-index: 1000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity ease 0.3s;
+}
+
+.sidebarModal.active {
+	pointer-events: initial;
+	opacity: 1;
+}
+
+.sidebarModalContent {
+	min-width: 500px;
+	background-color: var(--gray-800);
+	padding: 1.5rem;
+	border-radius: 8px;
+	opacity: 0;
+	transform: translate(0, 40px);
+	transition: opacity ease 0.3s, transform ease 0.3s;
+}
+
+.sidebarModal.active .sidebarModalContent {
+	transform: translate(0, 0);
+	opacity: 1;
+}
+
+.sidebarModalContent header {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.sidebarModalContent header button {
+	background: transparent;
+	border: none;
+	line-height: 0;
+	color: var(--gray-400);
+	cursor: pointer;
+}
+
+.sidebarModalContent form input {
+	background-color: var(--gray-900);
+	border-radius: 8px;
+	border: none;
+	padding: 1rem;
+	color: var(--gray-300);
+	display: block;
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.sidebarModalContent form input:focus {
+	outline: 1px solid var(--green-500);
+}
+
+.sidebarModalContent form input::placeholder {
+	color: var(--gray-400);
+}
+
+.sidebarModalContent form button[type='submit'] {
+	background-color: var(--green-500);
+	border: none;
+	border-radius: 8px;
+	color: var(--white);
+	font-weight: 700;
+	transition: background-color 0.2s;
+	cursor: pointer;
+	padding: 1rem 1.5rem;
+}
+
+.sidebarModalContent form button[type='submit']:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.sidebarModalContent form button[type='submit']:not(:disabled):hover {
+	background-color: var(--green-300);
+}
+
+.sidebarModalContent ul {
+	padding: 1rem;
+	border-top: 1px solid var(--gray-600);
+	margin-top: 1rem;
+}
+
+.sidebarModalContent ul li {
+	line-height: 2rem;
+	cursor: pointer;
+}
+
+.sidebarModalContent ul li.active {
+	font-weight: bold;
+	color: var(--green-500);
+}
+
+.sidebarModalContent ul li:hover {
+	text-decoration: underline;
+	font-weight: bold;
+	color: var(--green-500);
+}
