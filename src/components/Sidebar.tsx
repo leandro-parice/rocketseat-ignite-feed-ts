@@ -1,94 +1,25 @@
 import styles from './Sidebar.module.css';
+import profileBackground from '../assets/profile-background.jpg';
 
 import { PencilSimpleLine } from '@phosphor-icons/react';
-
-import profileBackground from '../assets/profile-background.jpg';
 import { SidebarModal } from './SidebarModal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { User } from '../interfaces';
 
-interface User {
-	name: string;
-	url: string;
-	role: string;
+interface SidebarProps {
+	users: User[];
+	currentUser: User;
+	onChangeCurrentUser: (user: User) => void;
+	onAddUser: (user: User) => void;
 }
-const defaultUsers: User[] = [
-	{ name: 'Leandro Parice', url: 'leandro-parice', role: 'Developer' },
-	{ name: 'Heloisa Fernanda', url: 'helolah', role: 'Developer' },
-	{ name: 'Rafael Vieira', url: '1stvieira', role: 'Developer' },
-];
 
-export function Sidebar() {
+export function Sidebar({
+	users,
+	currentUser,
+	onChangeCurrentUser,
+	onAddUser,
+}: SidebarProps) {
 	const [showModal, setShowModal] = useState(false);
-
-	const [users, setUsers] = useState<User[]>([]);
-
-	const [currentUser, setCurrentUser] = useState<User>(defaultUsers[0]);
-
-	useEffect(() => {
-		const getStoredUsers = () => {
-			const storedUsers = localStorage.getItem('users');
-			if (storedUsers) {
-				try {
-					const parsedUsers = JSON.parse(storedUsers);
-					if (
-						Array.isArray(parsedUsers) &&
-						parsedUsers.every(
-							(user) =>
-								typeof user.name === 'string' &&
-								typeof user.url === 'string' &&
-								typeof user.role === 'string'
-						)
-					) {
-						return parsedUsers;
-					}
-				} catch (error) {
-					console.error('Erro ao parsear dados do localStorage:', error);
-				}
-			}
-			return defaultUsers;
-		};
-
-		const getStoredCurrentUser = () => {
-			const storedCurrentUser = localStorage.getItem('currentUser');
-			if (storedCurrentUser) {
-				try {
-					const parsedUser = JSON.parse(storedCurrentUser);
-					if (
-						typeof parsedUser.name === 'string' &&
-						typeof parsedUser.url === 'string' &&
-						typeof parsedUser.role === 'string'
-					) {
-						return parsedUser;
-					}
-				} catch (error) {
-					console.error('Erro ao parsear currentUser do localStorage:', error);
-				}
-			}
-			return defaultUsers[0]; // Default user se não encontrar ou houver erro
-		};
-
-		const storedUsers = getStoredUsers();
-		setUsers(storedUsers);
-
-		const storedCurrentUser = getStoredCurrentUser();
-		setCurrentUser(storedCurrentUser);
-	}, []);
-
-	useEffect(() => {
-		localStorage.setItem('users', JSON.stringify(users));
-	}, [users]);
-
-	useEffect(() => {
-		localStorage.setItem('currentUser', JSON.stringify(currentUser));
-	}, [currentUser]);
-
-	function handleCurrentUserChange(user: User) {
-		setCurrentUser(user);
-	}
-
-	function addUser(newUser: User) {
-		setUsers([...users, newUser]);
-	}
 
 	function toggleModal() {
 		setShowModal((prevShowModal) => !prevShowModal);
@@ -114,8 +45,8 @@ export function Sidebar() {
 				onCloseModal={toggleModal}
 				users={users}
 				currentUser={currentUser}
-				onCurrentUserChange={handleCurrentUserChange}
-				onAddUser={addUser}
+				onCurrentUserChange={onChangeCurrentUser}
+				onAddUser={onAddUser}
 			/>
 		</aside>
 	);

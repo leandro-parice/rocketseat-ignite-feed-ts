@@ -2,14 +2,21 @@ import styles from './Comment.module.css';
 import avatar from '../assets/avatar.jpg';
 import { ThumbsUp, TrashSimple } from '@phosphor-icons/react';
 import { useState } from 'react';
+import { User } from '../interfaces';
 
 interface CommentProps {
 	commentId: number;
 	content: string;
 	onDeleteComment: (comment: number) => void;
+	currentUser: User;
 }
 
-export function Comment({ commentId, content, onDeleteComment }: CommentProps) {
+export function Comment({
+	commentId,
+	content,
+	onDeleteComment,
+	currentUser,
+}: CommentProps) {
 	const [likeCount, setLikeCount] = useState(0);
 
 	function handleDeleteComment() {
@@ -29,7 +36,7 @@ export function Comment({ commentId, content, onDeleteComment }: CommentProps) {
 				<div className={styles.commentBodyMessage}>
 					<header>
 						<div>
-							<strong>Devon Lane (você)</strong>
+							<strong>Leandro Parice</strong>
 							<time dateTime="2024-08-07 00:00:00" title="2024-08-07 00:00:00">
 								Cerca de 2h
 							</time>

@@ -1,12 +1,7 @@
 import { ChangeEvent, FormEvent, useState, MouseEvent } from 'react';
 import styles from './SidebarModal.module.css';
 import { X } from '@phosphor-icons/react';
-
-interface User {
-	name: string;
-	url: string;
-	role: string;
-}
+import { User } from '../interfaces';
 
 interface SidebarModalProps {
 	showModal: boolean;

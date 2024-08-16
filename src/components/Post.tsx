@@ -3,31 +3,16 @@ import { Comment } from './Comment';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
-
-interface Author {
-	name: string;
-	role: string;
-	avatarUrl: string;
-}
-
-interface Content {
-	id: number;
-	type: 'p' | 'a';
-	content: string;
-}
-
-interface Comment {
-	id: number;
-	content: string;
-}
+import { User, Author, Content } from '../interfaces';
 
 interface PostProps {
 	author: Author;
 	content: Content[];
 	publishedAt: Date;
+	currentUser: User;
 }
 
-export function Post({ author, content, publishedAt }: PostProps) {
+export function Post({ author, content, publishedAt, currentUser }: PostProps) {
 	const [comments, setComments] = useState<Comment[]>([]);
 
 	const [newCommentText, setNewCommentText] = useState('');
@@ -126,6 +111,7 @@ export function Post({ author, content, publishedAt }: PostProps) {
 							commentId={comment.id}
 							content={comment.content}
 							onDeleteComment={deleteComment}
+							currentUser={currentUser}
 						/>
 					);
 				})}
