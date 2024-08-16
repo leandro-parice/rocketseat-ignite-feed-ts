@@ -1,15 +1,21 @@
 import styles from './Feed.module.css';
 
 import { Post } from './Post';
-import { Post as PostInteface } from '../interfaces';
+import { Post as PostInteface, User } from '../interfaces';
 
 interface PropsFeed {
 	posts: PostInteface[];
 	onAddComment: (postId: number, content: string) => void;
 	onRemoveComment: (postId: number, commentId: number) => void;
+	currentUser: User;
 }
 
-export function Feed({ posts, onAddComment, onRemoveComment }: PropsFeed) {
+export function Feed({
+	posts,
+	onAddComment,
+	onRemoveComment,
+	currentUser,
+}: PropsFeed) {
 	return (
 		<div className={styles.feed}>
 			{posts.map((post) => {
@@ -23,6 +29,7 @@ export function Feed({ posts, onAddComment, onRemoveComment }: PropsFeed) {
 						comments={post.comments}
 						onAddComment={onAddComment}
 						onRemoveComment={onRemoveComment}
+						currentUser={currentUser}
 					/>
 				);
 			})}

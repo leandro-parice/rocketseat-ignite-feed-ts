@@ -11,6 +11,7 @@ interface CommentProps {
 	publishedAt: Date;
 	onRemoveComment: (postId: number, commentId: number) => void;
 	postId: number;
+	currentUser: User;
 }
 
 export function Comment({
@@ -20,6 +21,7 @@ export function Comment({
 	publishedAt,
 	onRemoveComment,
 	postId,
+	currentUser,
 }: CommentProps) {
 	const publishedDateFormatted = format(
 		publishedAt,
@@ -41,7 +43,9 @@ export function Comment({
 				<div className={styles.commentBodyMessage}>
 					<header>
 						<div>
-							<strong>{user.name}</strong>
+							<strong>
+								{user.name} {currentUser.url === user.url && '(Você)'}
+							</strong>
 							<time
 								dateTime={publishedAt.toString()}
 								title={publishedDateFormatted}
@@ -49,9 +53,11 @@ export function Comment({
 								{publishedDateRelativeToNow}
 							</time>
 						</div>
-						<button onClick={() => onRemoveComment(postId, commentId)}>
-							<TrashSimple />
-						</button>
+						{currentUser.url === user.url && (
+							<button onClick={() => onRemoveComment(postId, commentId)}>
+								<TrashSimple />
+							</button>
+						)}
 					</header>
 					<div>
 						<p>{content}</p>

@@ -226,6 +226,7 @@ export function Content() {
 				posts={posts}
 				onAddComment={addComment}
 				onRemoveComment={removeComment}
+				currentUser={currentUser}
 			/>
 		</div>
 	);

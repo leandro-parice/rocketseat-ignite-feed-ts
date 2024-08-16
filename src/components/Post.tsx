@@ -3,7 +3,12 @@ import { Comment } from './Comment';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
-import { Author, Comment as CommentInterface, Content } from '../interfaces';
+import {
+	Author,
+	Comment as CommentInterface,
+	Content,
+	User,
+} from '../interfaces';
 
 interface PostProps {
 	postId: number;
@@ -13,6 +18,7 @@ interface PostProps {
 	comments: CommentInterface[];
 	onAddComment: (postId: number, content: string) => void;
 	onRemoveComment: (postId: number, commentId: number) => void;
+	currentUser: User;
 }
 
 export function Post({
@@ -23,6 +29,7 @@ export function Post({
 	comments,
 	onAddComment,
 	onRemoveComment,
+	currentUser,
 }: PostProps) {
 	const [newCommentText, setNewCommentText] = useState('');
 
@@ -114,6 +121,7 @@ export function Post({
 							user={comment.user}
 							onRemoveComment={onRemoveComment}
 							postId={postId}
+							currentUser={currentUser}
 						/>
 					);
 				})}
