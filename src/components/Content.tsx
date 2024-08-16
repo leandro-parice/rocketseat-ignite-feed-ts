@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styles from './Content.module.css';
 import { Feed } from './Feed';
 import { Sidebar } from './Sidebar';
-import { User, Post } from '../interfaces';
+import { User, Post, Comment } from '../interfaces';
 
 const defaultUsers: User[] = [
 	{ name: 'Leandro Parice', url: 'leandro-parice', role: 'Developer' },
@@ -172,6 +172,48 @@ export function Content() {
 		setUsers([...users, newUser]);
 	}
 
+	function addComment(postId: number, content: string) {
+		const newComment: Comment = {
+			id: Date.now(), // Gerar um ID único com base no timestamp
+			user: currentUser,
+			content,
+			publishedAt: new Date(),
+		};
+
+		setPosts((prevPosts) => {
+			const updatedPosts = prevPosts.map((post) => {
+				if (post.id === postId) {
+					return {
+						...post,
+						comments: [...post.comments, newComment],
+					};
+				}
+				return post;
+			});
+
+			return updatedPosts;
+		});
+	}
+
+	function removeComment(postId: number, commentId: number) {
+		setPosts((prevPosts) => {
+			const updatedPosts = prevPosts.map((post) => {
+				if (post.id === postId) {
+					const updatedComments = post.comments.filter(
+						(comment) => comment.id !== commentId
+					);
+					return {
+						...post,
+						comments: updatedComments,
+					};
+				}
+				return post;
+			});
+
+			return updatedPosts;
+		});
+	}
+
 	return (
 		<div className={styles.content}>
 			<Sidebar
@@ -180,7 +222,11 @@ export function Content() {
 				onChangeCurrentUser={handleCurrentUserChange}
 				onAddUser={addUser}
 			/>
-			<Feed posts={posts} currentUser={currentUser} />
+			<Feed
+				posts={posts}
+				onAddComment={addComment}
+				onRemoveComment={removeComment}
+			/>
 		</div>
 	);
 }

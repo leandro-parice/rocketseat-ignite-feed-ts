@@ -3,18 +3,27 @@ import { Comment } from './Comment';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
-import { User, Author, Content } from '../interfaces';
+import { Author, Comment as CommentInterface, Content } from '../interfaces';
 
 interface PostProps {
+	postId: number;
 	author: Author;
 	content: Content[];
 	publishedAt: Date;
-	currentUser: User;
+	comments: CommentInterface[];
+	onAddComment: (postId: number, content: string) => void;
+	onRemoveComment: (postId: number, commentId: number) => void;
 }
 
-export function Post({ author, content, publishedAt, currentUser }: PostProps) {
-	const [comments, setComments] = useState<Comment[]>([]);
-
+export function Post({
+	postId,
+	author,
+	content,
+	publishedAt,
+	comments,
+	onAddComment,
+	onRemoveComment,
+}: PostProps) {
 	const [newCommentText, setNewCommentText] = useState('');
 
 	const publishedDateFormatted = format(
@@ -34,8 +43,7 @@ export function Post({ author, content, publishedAt, currentUser }: PostProps) {
 
 	function handleCreateNewComment(event: FormEvent) {
 		event.preventDefault();
-		const newComment = { id: Date.now(), content: newCommentText };
-		setComments([...comments, newComment]);
+		onAddComment(postId, newCommentText);
 		setNewCommentText('');
 	}
 
@@ -46,14 +54,6 @@ export function Post({ author, content, publishedAt, currentUser }: PostProps) {
 
 	function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
 		event.target.setCustomValidity('Esse campo é obrigatório!');
-	}
-
-	function deleteComment(commentIdToDelete: number) {
-		const commentsWithoutDeletedOne = comments.filter((comment) => {
-			return comment.id !== commentIdToDelete;
-		});
-
-		setComments(commentsWithoutDeletedOne);
 	}
 
 	return (
@@ -110,8 +110,10 @@ export function Post({ author, content, publishedAt, currentUser }: PostProps) {
 							key={comment.id}
 							commentId={comment.id}
 							content={comment.content}
-							onDeleteComment={deleteComment}
-							currentUser={currentUser}
+							publishedAt={comment.publishedAt}
+							user={comment.user}
+							onRemoveComment={onRemoveComment}
+							postId={postId}
 						/>
 					);
 				})}
