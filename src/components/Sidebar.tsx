@@ -48,13 +48,39 @@ export function Sidebar() {
 			return defaultUsers;
 		};
 
-		setUsers(getStoredUsers());
+		const getStoredCurrentUser = () => {
+			const storedCurrentUser = localStorage.getItem('currentUser');
+			if (storedCurrentUser) {
+				try {
+					const parsedUser = JSON.parse(storedCurrentUser);
+					if (
+						typeof parsedUser.name === 'string' &&
+						typeof parsedUser.url === 'string' &&
+						typeof parsedUser.role === 'string'
+					) {
+						return parsedUser;
+					}
+				} catch (error) {
+					console.error('Erro ao parsear currentUser do localStorage:', error);
+				}
+			}
+			return defaultUsers[0]; // Default user se não encontrar ou houver erro
+		};
+
+		const storedUsers = getStoredUsers();
+		setUsers(storedUsers);
+
+		const storedCurrentUser = getStoredCurrentUser();
+		setCurrentUser(storedCurrentUser);
 	}, []);
 
 	useEffect(() => {
 		localStorage.setItem('users', JSON.stringify(users));
-		console.log(users);
 	}, [users]);
+
+	useEffect(() => {
+		localStorage.setItem('currentUser', JSON.stringify(currentUser));
+	}, [currentUser]);
 
 	function handleCurrentUserChange(user: User) {
 		setCurrentUser(user);
