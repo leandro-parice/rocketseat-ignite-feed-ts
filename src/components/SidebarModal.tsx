@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState, MouseEvent } from 'react';
 import styles from './SidebarModal.module.css';
 import { X } from '@phosphor-icons/react';
 

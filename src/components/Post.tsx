@@ -19,7 +19,6 @@ interface Content {
 interface Comment {
 	id: number;
 	content: string;
-	author: Author;
 }
 
 interface PostProps {
