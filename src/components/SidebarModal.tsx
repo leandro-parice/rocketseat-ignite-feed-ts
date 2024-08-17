@@ -75,6 +75,7 @@ export function SidebarModal({
 					</button>
 				</header>
 				<form onSubmit={handleAddUser}>
+					<h1>Adicionar usuário</h1>
 					<input
 						type="text"
 						placeholder="Name"
@@ -97,6 +98,7 @@ export function SidebarModal({
 						Salvar
 					</button>
 				</form>
+				<h2>Escolher usuário</h2>
 				<ul>
 					{users.map((user) => (
 						<li

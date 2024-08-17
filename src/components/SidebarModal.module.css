@@ -20,13 +20,20 @@
 }
 
 .sidebarModalContent {
-	min-width: 500px;
+	width: 100%;
+	max-width: 500px;
 	background-color: var(--gray-800);
 	padding: 1.5rem;
 	border-radius: 8px;
 	opacity: 0;
 	transform: translate(0, 40px);
 	transition: opacity ease 0.3s, transform ease 0.3s;
+}
+
+@media (max-width: 768px) {
+	.sidebarModalContent {
+		width: calc(100% - 2rem);
+	}
 }
 
 .sidebarModal.active .sidebarModalContent {
@@ -48,6 +55,16 @@
 	line-height: 0;
 	color: var(--gray-400);
 	cursor: pointer;
+}
+.sidebarModalContent form h1 {
+	margin-bottom: 0.75rem;
+	font-size: 1.5rem;
+}
+
+.sidebarModalContent form {
+	border-bottom: 1px solid var(--gray-600);
+	padding-bottom: 2rem;
+	margin-bottom: 1.5rem;
 }
 
 .sidebarModalContent form input {
@@ -89,10 +106,12 @@
 	background-color: var(--green-300);
 }
 
+.sidebarModalContent h2 {
+	font-size: 1.25rem;
+}
+
 .sidebarModalContent ul {
 	padding: 1rem;
-	border-top: 1px solid var(--gray-600);
-	margin-top: 1rem;
 }
 
 .sidebarModalContent ul li {
