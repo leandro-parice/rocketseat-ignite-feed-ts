@@ -3,7 +3,7 @@ import profileBackground from '../assets/profile-background.jpg';
 
 import { PencilSimpleLine } from '@phosphor-icons/react';
 import { SidebarModal } from './SidebarModal';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { User } from '../interfaces';
 
 interface SidebarProps {

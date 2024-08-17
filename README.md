@@ -1,50 +1,11 @@
-# React + TypeScript + Vite
+# Ignite Feed
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About
 
-Currently, two official plugins are available:
+This project, called Ignite Feed, was developed during the ReactJS course by Rocketseat. The primary goal of the course was to provide a solid foundation in React, so some functionalities of the original template were not fully implemented.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+With this in mind, I decided to complete the project by expanding its scope and adding the pending features. Although I am still improving my skills, I chose to use localStorage to store information and implemented an “Edit Profile” button that allows users to add or manage profiles. This way, it’s possible to simulate any GitHub user commenting on posts.
 
-## Expanding the ESLint configuration
+To complete this project, I utilized JavaScript, TypeScript, CSS, and HTML. In addition, I applied key React concepts such as state management, state immutability, lists and keys, props, and componentization. I also worked with localStorage to store user information and leveraged React’s useEffect hook to manage side effects, enabling this user simulation.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Therefore, this project offers a minimal closed scope, serving as a good example of how a React project can be developed and completed, even with limited resources. Feel free to suggest improvements or share your feedback.
