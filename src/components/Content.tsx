@@ -67,9 +67,9 @@ const defaultPosts: Post[] = [
 ];
 
 export function Content() {
-	const [users, setUsers] = useState<User[]>(defaultUsers);
+	const [users, setUsers] = useState<User[]>([]);
 	const [currentUser, setCurrentUser] = useState<User>(defaultUsers[0]);
-	const [posts, setPosts] = useState<Post[]>(defaultPosts);
+	const [posts, setPosts] = useState<Post[]>([]);
 
 	useEffect(() => {
 		const getStoredUsers = () => {
