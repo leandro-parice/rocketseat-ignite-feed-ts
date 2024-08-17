@@ -9,3 +9,6 @@ With this in mind, I decided to complete the project by expanding its scope and 
 To complete this project, I utilized JavaScript, TypeScript, CSS, and HTML. In addition, I applied key React concepts such as state management, state immutability, lists and keys, props, and componentization. I also worked with localStorage to store user information and leveraged React’s useEffect hook to manage side effects, enabling this user simulation.
 
 Therefore, this project offers a minimal closed scope, serving as a good example of how a React project can be developed and completed, even with limited resources. Feel free to suggest improvements or share your feedback.
+
+<img height="399" src="src/assets/screenshot-1.png" alt="Ignite Feed" />
+<img height="399" src="src/assets/screenshot-2.png" alt="Gerenciar usuários" />
